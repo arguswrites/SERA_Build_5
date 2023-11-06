@@ -369,7 +369,6 @@ public class CameraFragment extends Fragment
             classificationResultsAdapter.updateResults(results.get(0).getCategories());
             fragmentCameraBinding.bottomSheetLayout.inferenceTimeVal
                     .setText(String.format(Locale.US, "%d ms", inferenceTime));
-
         });
 
         speakResults(results);
@@ -377,9 +376,12 @@ public class CameraFragment extends Fragment
 
     private void speakResults(List<Classifications> results) {
         if (!results.isEmpty()) {
-            String textToSpeak = results.get(0).getCategories().get(0).getLabel();
+            String toSpeak = results.get(0).getCategories().get(0).getLabel();
 
-            textToSpeech(textToSpeak);
+            textToSpeech(toSpeak);
+
+        } else {
+            textToSpeech("No item found");
         }
     }
 
