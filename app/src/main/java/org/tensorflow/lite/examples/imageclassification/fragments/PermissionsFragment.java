@@ -34,9 +34,14 @@ public class PermissionsFragment extends Fragment {
      * Convenience method used to check if all permissions required by this
      * app are granted
      */
+
+    static String camPer = Manifest.permission.CAMERA;
+    static String spkPer = Manifest.permission.MODIFY_AUDIO_SETTINGS;
+
+    static String perm = camPer + spkPer;
     public static boolean hasPermission(Context context) {
         return ContextCompat.checkSelfPermission(context,
-                Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED;
+                perm) == PackageManager.PERMISSION_GRANTED;
     }
 
     private final ActivityResultLauncher<String> requestPermissionLauncher
@@ -60,10 +65,10 @@ public class PermissionsFragment extends Fragment {
     public void onStart() {
         super.onStart();
         if (ContextCompat.checkSelfPermission(requireContext(),
-                Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
+                perm) == PackageManager.PERMISSION_GRANTED) {
             navigateToCamera();
         } else {
-            requestPermissionLauncher.launch(Manifest.permission.CAMERA);
+            requestPermissionLauncher.launch(camPer);
         }
     }
 

@@ -15,6 +15,8 @@
  */
 package org.tensorflow.lite.examples.imageclassification.fragments;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -33,6 +35,7 @@ import androidx.camera.core.ImageAnalysis;
 import androidx.camera.core.ImageProxy;
 import androidx.camera.core.Preview;
 import androidx.camera.lifecycle.ProcessCameraProvider;
+import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
@@ -55,6 +58,7 @@ public class CameraFragment extends Fragment
         implements ImageClassifierHelper.ClassifierListener {
 
     private static final String TAG = "Image Classifier";
+    private static final int PERMISSION_REQUEST_CODE = 1;
     private FragmentCameraBinding fragmentCameraBinding;
     private ImageClassifierHelper imageClassifierHelper;
     private Bitmap bitmapBuffer;
@@ -89,6 +93,7 @@ public class CameraFragment extends Fragment
                             CameraFragmentDirections.actionCameraToPermissions()
                     );
         }
+
     }
 
     @Override
@@ -360,8 +365,9 @@ public class CameraFragment extends Fragment
             fragmentCameraBinding.bottomSheetLayout.inferenceTimeVal
                     .setText(String.format(Locale.US, "%d ms", inferenceTime));
 
-
         });
+
+        speakResults(results);
     }
 
     private void speakResults(List<Classifications> results) {
@@ -393,6 +399,4 @@ public class CameraFragment extends Fragment
         });
     }
 
-    public interface ButtonClickListener {
-    }
 }

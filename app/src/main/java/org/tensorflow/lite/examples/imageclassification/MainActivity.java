@@ -16,6 +16,7 @@
 
 package org.tensorflow.lite.examples.imageclassification;
 
+import android.graphics.Camera;
 import android.os.Build;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
@@ -24,11 +25,13 @@ import android.widget.Button;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import org.checkerframework.checker.units.qual.C;
 import org.tensorflow.lite.examples.imageclassification.databinding.ActivityMainBinding;
 import org.tensorflow.lite.examples.imageclassification.fragments.CameraFragment;
 
 /** Entrypoint for app */
-public class MainActivity extends AppCompatActivity implements CameraFragment.ButtonClickListener {
+public class MainActivity extends AppCompatActivity{
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -46,4 +49,5 @@ public class MainActivity extends AppCompatActivity implements CameraFragment.Bu
             super.onBackPressed();
         }
     }
+
 }
