@@ -105,6 +105,11 @@ public class CameraFragment extends Fragment
         synchronized (task) {
             imageClassifierHelper.clearImageClassifier();
         }
+
+        if (tts != null) {
+            tts.stop();
+            tts.shutdown();
+        }
     }
 
     @Override
